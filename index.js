@@ -1,29 +1,73 @@
+document.getElementById("chords").style.display = "none";
+document.getElementById("set").style.display = "none";
+var opt;
+    var buttonInnerHTML;
+
+document.querySelectorAll(".btn")[0].addEventListener("click", function() {
+  opt = "guitar";
+  document.getElementById("chords").style.display = "block";
+  document.getElementById("set").style.display = "none";
+});
+
+document.querySelectorAll(".btn")[1].addEventListener("click", function() {
+  opt = "drum";
+  document.getElementById("chords").style.display = "none";
+  document.getElementById("set").style.display = "block";
+});
+
+
 var numberOfDrumButtons = document.querySelectorAll(".drum").length;
 
 for (var i = 0; i < numberOfDrumButtons; i++) {
 
   document.querySelectorAll(".drum")[i].addEventListener("click", function() {
 
-    var buttonInnerHTML = this.innerHTML;
+    buttonInnerHTML = this.innerHTML;
 
-    makeSound(buttonInnerHTML);
+    makeSoundDrum(buttonInnerHTML);
 
-    buttonAnimation(buttonInnerHTML);
+    buttonAnimationDrum(buttonInnerHTML);
 
   });
 
 }
 
+
+var numberOfGuitarButtons = document.querySelectorAll(".guitar").length;
+
+for (var i = 0; i < numberOfGuitarButtons; i++) {
+
+  document.querySelectorAll(".guitar")[i].addEventListener("click", function() {
+
+    buttonInnerHTML = this.innerHTML;
+
+    buttonAnimationGuitar(buttonInnerHTML);
+
+        makeSoundGuitar(buttonInnerHTML);
+
+
+  });
+
+}
+
+
+
 document.addEventListener("keypress", function(event) {
 
-  makeSound(event.key);
-
-  buttonAnimation(event.key);
-
+if(opt=="drum")
+{
+  makeSoundDrum(event.key);
+    buttonAnimationDrum(event.key);
+}
+else
+{
+      buttonAnimationGuitar(event.key);
+  makeSoundGuitar(event.key);
+}
 });
 
 
-function makeSound(key) {
+function makeSoundDrum(key) {
 
   switch (key) {
     case "w":
@@ -62,16 +106,27 @@ function makeSound(key) {
       break;
 
 
-    default: console.log(key);
+    default:
+      console.log(key);
 
   }
 }
 
 
-function buttonAnimation(currentKey) {
+function buttonAnimationGuitar(currentKey) {
 
-  var activeButton = document.querySelector("." + currentKey);
+  var activeButton = document.querySelector("." + currentKey + "g");
+  activeButton.classList.add("pressed");
 
+  setTimeout(function() {
+    activeButton.classList.remove("pressed");
+  }, 100);
+
+}
+
+function buttonAnimationDrum(currentKey) {
+
+  var activeButton = document.querySelector("." + currentKey + "d");
   activeButton.classList.add("pressed");
 
   setTimeout(function() {
