@@ -112,6 +112,56 @@ function makeSoundDrum(key) {
   }
 }
 
+function makeSoundGuitar(key) {
+
+  switch (key) {
+    case "w":
+      var Amajor = new Audio("sounds/Amajor.wav");
+      Amajor.play();
+      break;
+
+    case "a":
+      var Aminor = new Audio("sounds/Aminor.wav");
+      Aminor.play();
+      break;
+
+    case "s":
+      var Cmajor = new Audio('sounds/Cmajor.mp3');
+      Cmajor.play();
+      break;
+
+    case "d":
+      var Dmajor = new Audio('sounds/Dmajor.mp3');
+      Dmajor.play();
+      break;
+
+    case "j":
+      var Emajor = new Audio('sounds/Emajor.mp3');
+      Emajor.play();
+      break;
+
+    case "k":
+      var Eminor = new Audio('sounds/Eminor.wav');
+      Eminor.play();
+      break;
+
+    case "l":
+      var Gmajor = new Audio('sounds/Gmajor.wav');
+      Gmajor.play();
+      break;
+
+    case "i":
+      var Fmajor = new Audio('sounds/Fmajor.wav');
+      Fmajor.play();
+      break;
+
+
+    default:
+      console.log(key);
+
+  }
+}
+
 
 function buttonAnimationGuitar(currentKey) {
 
