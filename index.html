@@ -37,6 +37,16 @@
     <button class="i guitar ig">i</button>
 
   </div>
+  <footer>
+    <p>Enter the a series of keys in order to play them.</p>
+    <form class="form" id="form1" action="welcome_post.php" method="post">
+      <input type="text" id="str" name="string" value="keys">
+      <input type="number" id="delayTime" name="delayTime" value="delay time (in ms)">
+      <!-- <button onclick="play(event)" class="myButton">Play</button> -->
+      <!-- <input type="submit" class="play" placeholder="Play"> -->
+      <button type="submit" class="myButton" name="button">Play</button>
+    </form>
+  </footer>
 <script src="index.js" charset="utf-8"></script>
 </body>
 </html>

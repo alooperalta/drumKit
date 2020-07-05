@@ -1,7 +1,7 @@
 document.getElementById("chords").style.display = "none";
 document.getElementById("set").style.display = "none";
 var opt;
-    var buttonInnerHTML;
+var buttonInnerHTML;
 
 document.querySelectorAll(".btn")[0].addEventListener("click", function() {
   opt = "guitar";
@@ -24,7 +24,7 @@ for (var i = 0; i < numberOfDrumButtons; i++) {
 
     buttonInnerHTML = this.innerHTML;
 
-    makeSoundDrum(buttonInnerHTML);
+    makeSoundDrum(buttonInnerHTML,0);
 
     buttonAnimationDrum(buttonInnerHTML);
 
@@ -52,14 +52,14 @@ for (var i = 0; i < numberOfGuitarButtons; i++) {
 
 
 
-document.addEventListener("keypress", function(event) {
+document.addEventListener("keypress", function abc(event) {
 
 if(opt=="drum")
 {
-  makeSoundDrum(event.key);
+  makeSoundDrum(event.key,0);
     buttonAnimationDrum(event.key);
 }
-else
+if(opt=="guitar")
 {
       buttonAnimationGuitar(event.key);
   makeSoundGuitar(event.key);
@@ -67,53 +67,55 @@ else
 });
 
 
-function makeSoundDrum(key) {
+function makeSoundDrum(key, i) {
+  setTimeout(function(){
+    switch (key) {
+      case "w":
+        var tom1 = new Audio("sounds/tom-1.mp3");
+        tom1.play();
+        break;
 
-  switch (key) {
-    case "w":
-      var tom1 = new Audio("sounds/tom-1.mp3");
-      tom1.play();
-      break;
+      case "a":
+        var tom2 = new Audio("sounds/tom-2.mp3");
+        tom2.play();
+        break;
 
-    case "a":
-      var tom2 = new Audio("sounds/tom-2.mp3");
-      tom2.play();
-      break;
+      case "s":
+        var tom3 = new Audio('sounds/tom-3.mp3');
+        tom3.play();
+        break;
 
-    case "s":
-      var tom3 = new Audio('sounds/tom-3.mp3');
-      tom3.play();
-      break;
+      case "d":
+        var tom4 = new Audio('sounds/tom-4.mp3');
+        tom4.play();
+        break;
 
-    case "d":
-      var tom4 = new Audio('sounds/tom-4.mp3');
-      tom4.play();
-      break;
+      case "j":
+        var snare = new Audio('sounds/snare.mp3');
+        snare.play();
+        break;
 
-    case "j":
-      var snare = new Audio('sounds/snare.mp3');
-      snare.play();
-      break;
+      case "k":
+        var crash = new Audio('sounds/crash.mp3');
+        crash.play();
+        break;
 
-    case "k":
-      var crash = new Audio('sounds/crash.mp3');
-      crash.play();
-      break;
-
-    case "l":
-      var kick = new Audio('sounds/kick-bass.mp3');
-      kick.play();
-      break;
+      case "l":
+        var kick = new Audio('sounds/kick-bass.mp3');
+        kick.play();
+        break;
 
 
-    default:
-      console.log(key);
+      default:
+        console.log(key);
+      }
+  },i);
 
-  }
+
 }
 
 function makeSoundGuitar(key) {
-
+  setTimeout(function(){
   switch (key) {
     case "w":
       var Amajor = new Audio("sounds/Amajor.wav");
@@ -160,6 +162,7 @@ function makeSoundGuitar(key) {
       console.log(key);
 
   }
+},i);
 }
 
 
@@ -184,3 +187,40 @@ function buttonAnimationDrum(currentKey) {
   }, 100);
 
 }
+
+
+
+
+
+
+
+
+
+var myForm = document.getElementById('form1');
+
+myForm.onsubmit = function () {
+    var delayTime = document.getElementById('delayTime').value;
+    var string = document.getElementById('str').value;
+    console.log(string);
+
+    for(i=0; i<string.length; i++)
+    { setTimeout(function(){},2000);
+      console.log('hello3');
+      var j = string.slice(i,i+1);
+      var del = 2000*i*i*i*i;
+      if(opt==="drum")
+      {
+          setTimeout(makeSoundDrum(j,delayTime*i), del);
+      }
+      else if (opt==="guitar")
+      {
+          setTimeout(makeSoundGuitar(j,delayTime*i), del);
+      }
+      else {
+          alert("Choose Guitar or Drum first");
+      }
+    }
+    console.log('hello4');
+
+    return false;
+};
